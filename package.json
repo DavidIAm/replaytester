@@ -1,0 +1,26 @@
+{ "name" : "replayTester"
+, "description" : "Manta relay service for events, REST to RABBITMQ"
+, "main" : "event-relay.js"
+, "author" : "Manta Media"
+, "version" : "0.1.0-1"
+, "repository" :
+	{ "type" : "svn"
+	, "url" : "http://subversion/svn/main/event-sender/trunk"
+	}
+, "bugs" : { "url" : "http://trac/trac/main/query?col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&keywords=~event-sender&order=priority" }
+, "licenses" :
+	[ { "type" : "MANTA"
+		, "url" : "http://manta.com/dont/steal/our/stuff"
+		}
+	]
+, "dependencies" :
+	{ "event-relay": "git+ssh://git@github.com:mantacode/event-relay-lib.git"
+	, "jade" : "*"
+	, "node-uuid" : "*"
+	, "express" : "*"
+	}
+, "devDependencies" : { "jasmine-node" : "<= 1.0.22" }
+, "scripts" : 
+	{ "start": "PORT=8240 node event-relay.js -l /var/log/nodejs/event-sender"
+	}
+}
