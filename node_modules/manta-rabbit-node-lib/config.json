@@ -1,0 +1,41 @@
+  { "connection":
+    { "options":
+      { "host": "localhost"
+      , "port": 5672
+      , "login": "user"
+      , "password": "pass"
+      , "vhost": "/"
+      }
+    , "implOptions":
+      { "defaultExchangeName": "myDefault"
+      , "routingKeyInPayload": false
+      , "deliveryTagInPayload": false
+      , "reconnect": true
+      , "reconnectBackoffStrategy": "linear"
+      , "reconnectExponentialLimit": 120000
+      , "reconnectBackoffTime": 1000
+      }
+    }
+  , "includes": [ "../event-relay/config.json" ]
+  , "queues":
+    [ { "name": "PersistEvent"
+      , "bindings":
+        [ { "routing_key": "persist.#"
+          , "exchange": "MantaEventPersist"
+          }
+        ]
+      , "passive": false
+      , "durable": false
+      , "exclusive": false
+      , "autoDelete": true
+      , "noDeclare": false
+      , "arguments": { }
+      , "closeChannelOnUnsubscribe": false
+      , "subscribeOptions":
+        { "ack": false
+        , "prefetchCount": 1
+        }
+      }
+    ]
+  }
+

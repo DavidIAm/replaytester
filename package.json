@@ -14,7 +14,7 @@
 		}
 	]
 , "dependencies" :
-	{ "event-relay": "git+ssh://git@github.com:mantacode/event-relay-lib.git"
+	{ "manta-rabbit-node-lib": "git+ssh://git@github.com:mantacode/manta-rabbit-node-lib.git"
 	, "jade" : "*"
 	, "node-uuid" : "*"
 	, "express" : "*"
