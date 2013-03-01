@@ -1,4 +1,4 @@
-var host = "manta-events-replay.elasticbeanstalk.com";
+var host = "mantaevents-replay.elasticbeanstalk.com";
 var port = 80;
 var pathbase = "/rest/replay/";
 var remoteRabbit = "svc-proxy-dev.aws.ecnext.net";
@@ -78,12 +78,13 @@ rabbit.on('ready', function (rabbit) {
 		rabbit.emit(exchangename, queuename, { message: "queue receiving good" } );
 //		setInterval(function () { rabbit.emit(exchangename, queuename, { message: "queue delay send"} ); }, 10000 );
 
+		console.log("PUT http://"+hostip+':'+port+pathbase+name);
 		var reqa = http.request({ method: 'PUT', host: hostip, port:port, path:pathbase+name }, function (resa) {
 			var buf = '';
 			resa.on('data', function (d) { buf = buf + d } );
 			resa.on('end', function () {
-//				console.log("have resa response to PUT http://"+hostip+":"+port+pathbase+name, resa.statusCode);
-//				console.log("REQUEST A RESPONSE", buf);
+				console.log("have resa response to PUT http://"+hostip+":"+port+pathbase+name, resa.statusCode);
+				console.log("REQUEST A RESPONSE", buf);
 				if (resa.statusCode == 200) return;
 				if (resa.statusCode != 202) console.log("BAD RESPONSE ("+resa.statusCode+") FOR REPLAY:"+buf);
 			} );
